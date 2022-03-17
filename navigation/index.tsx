@@ -62,19 +62,24 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        tabBarShowLabel: false ,
-        tabBarStyle: {
-          elevation: 8, 
-          height: 80,
 
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          shadowColor: 'black',
+          shadowOpacity: 0.15,
+          shadowOffset: { width: 0, height: 2 },
+          shadowRadius: 10,
+          backgroundColor: '#FFFFFF',
+          elevation: 3,
+          height: 60,
         }
 
       }}
 
-      >
+    >
       <BottomTab.Screen
         name="Home"
         component={Home}
@@ -113,7 +118,7 @@ function BottomTabNavigator() {
           tabBarIcon: (props) => <TabBarIcon name="book" {...props} text="Profile" />,
         }}
       />
-      
+
     </BottomTab.Navigator>
   );
 }
@@ -123,30 +128,34 @@ function BottomTabNavigator() {
  */
 interface tabBarIconProps {
   name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string; 
+  color: string;
   text: string;
   focused: boolean;
 }
-function TabBarIcon({name, color,text,focused}:tabBarIconProps) {
-  return <View style={tabBarStyle.container}>
-    <FontAwesome size={30} style={{ marginBottom: -3 }} name={name} color={color} />
-    <Text style={[tabBarStyle.text, {
-      fontWeight: focused? "bold": "normal",
-      color: color 
-    }]}>
-      {text}
-    </Text>
-  </View>;
+function TabBarIcon({ name, color, text, focused }: tabBarIconProps) {
+  return (
+    <View style={tabBarStyle.container}>
+
+      {/* change with svg  */}
+      <FontAwesome size={30} style={{ marginBottom: -3 }} name={name} color={color} />
+      <Text style={[tabBarStyle.text, {
+        fontWeight: focused ? "bold" : "normal",
+        color: color
+      }]}>
+        {text}
+      </Text>
+    </View>
+  );
 }
 
 const tabBarStyle = StyleSheet.create({
   container: {
-    display:'flex', 
-    flexDirection:'column',
-    alignItems:'center', 
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   text: {
-    marginTop: 5,
+    marginTop: 3,
     fontWeight: 'normal'
   }
 })
