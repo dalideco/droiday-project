@@ -8,16 +8,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import Home from '../screens/Home';
+import Lectures from '../screens/Lectures';
+import Profile from '../screens/Profile'
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { Text } from '../components/Themed';
+import { StyleSheet } from 'react-native';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -58,16 +61,26 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
+      
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+        tabBarShowLabel: false ,
+        tabBarStyle: {
+          elevation: 8, 
+          height: 80,
+
+        }
+
+      }}
+
+      >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        name="Home"
+        component={Home}
+        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: (props) => <TabBarIcon name="home" {...props} text="Home" />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -85,13 +98,22 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Lectures"
+        component={Lectures}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Lectures',
+          tabBarIcon: (props) => <TabBarIcon name="book" {...props} text="Lectures" />,
         }}
       />
+      <BottomTab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
+          tabBarIcon: (props) => <TabBarIcon name="book" {...props} text="Profile" />,
+        }}
+      />
+      
     </BottomTab.Navigator>
   );
 }
@@ -99,9 +121,32 @@ function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
+interface tabBarIconProps {
   name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  color: string; 
+  text: string;
+  focused: boolean;
 }
+function TabBarIcon({name, color,text,focused}:tabBarIconProps) {
+  return <View style={tabBarStyle.container}>
+    <FontAwesome size={30} style={{ marginBottom: -3 }} name={name} color={color} />
+    <Text style={[tabBarStyle.text, {
+      fontWeight: focused? "bold": "normal",
+      color: color 
+    }]}>
+      {text}
+    </Text>
+  </View>;
+}
+
+const tabBarStyle = StyleSheet.create({
+  container: {
+    display:'flex', 
+    flexDirection:'column',
+    alignItems:'center', 
+  },
+  text: {
+    marginTop: 5,
+    fontWeight: 'normal'
+  }
+})
