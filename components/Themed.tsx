@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TouchableOpacityProps
 } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -77,48 +78,62 @@ export function TextInput(props: TextInputProps) {
   </DefaultInput>
 }
 
-export function Button(props:TouchableOpacityProps){
+export function Button(props: TouchableOpacityProps) {
   const { style, ...otherProps } = props;
-  const backgroundColor = useThemeColor({  }, 'tint');
-  return <TouchableOpacity 
-    style={[{backgroundColor},style]}
+  const backgroundColor = useThemeColor({}, 'tint');
+  return <TouchableOpacity
+    style={[{ backgroundColor }, style]}
     {...otherProps}></TouchableOpacity>
 }
 
 
 
-export function InputWithButton (props:any){
+export function InputWithButton(props: any) {
   const { style, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'lighterColor');
   const tintColor = useThemeColor({}, 'tint')
+
   return <DefaultView style={[{
     backgroundColor,
-    paddingTop: 15,
-    paddingLeft: 10,
-    paddingBottom: 15,
-    paddingRight: 10,
-    width: 300,
-    borderRadius: 15,
+    padding: 7,
+    paddingLeft: 15,
+    borderRadius: 20,
     elevation: 3,
     shadowColor: 'black',
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'space-between' 
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 50,
+    marginBottom: 50
   }, style]} {...otherProps}>
     <DefaultInput
       style={{
         fontSize: 20,
+        flex: 1
       }}
     ></DefaultInput>
     <TouchableOpacity
-      style={{backgroundColor:tintColor}}
+      style={{
+        backgroundColor: tintColor,
+        width: 50,
+        height: 50,
+        borderRadius: 15,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 3,
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 10,
+      }}
     >
-      <Text>
-        click
-      </Text>
+      <FontAwesome name="search" color={backgroundColor}>
+
+      </FontAwesome>
     </TouchableOpacity>
   </DefaultView>
 }
