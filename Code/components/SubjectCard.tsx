@@ -5,7 +5,7 @@ import { Text } from "./Themed"
 interface props {
     subject: string,
     title: string,
-    thumbnail: string,
+    thumbnail: any,
     total: number,
     done:number
 }
@@ -27,7 +27,7 @@ export default function SubjectCard({
         }]}>
             <Image
                 style={styles.image}
-                source={require(`../assets/images/Science.jpg`)}
+                source={thumbnail}
             ></Image>
             <View style={styles.content}>
                 <Text style={[{

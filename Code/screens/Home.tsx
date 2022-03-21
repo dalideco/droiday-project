@@ -30,21 +30,24 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
 
         </View>
         <View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{
+          <ScrollView 
+            pagingEnabled
+            horizontal 
+            showsHorizontalScrollIndicator={false} style={{
             width: Dimensions.get('window').width,
             // backgroundColor:'red'
           }}>
             <SubjectCard
               subject="Natural Science"
               title="Anatomy of the human body"
-              thumbnail="Science"
+              thumbnail={require(`../assets/images/Science.jpg`)}
               total={8}
               done={2}
             />
             <SubjectCard
               subject="Maths"
               title="Numbers"
-              thumbnail="Numbers"
+              thumbnail={require(`../assets/images/Numbers.jpg`)}
               total={8}
               done={6}
             />
