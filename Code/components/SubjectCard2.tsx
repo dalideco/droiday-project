@@ -6,21 +6,30 @@ interface props {
     title: string,
     thumbnail: string,
     total: number,
+    selected?: boolean
+}
+
+const shadow = {
+    elevation: 3,
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 10,
 }
 
 export default function SubjectCard2({
     title,
     thumbnail,
     total,
+    selected = false
 }: props) {
 
     const lighterColor = useThemeColor({}, 'lighterColor')
-    const tintColor = useThemeColor({}, "tint")
 
     return (
         <View style={[styles.container, {
             backgroundColor: lighterColor,
-        }]}>
+        },selected?shadow:{}]}>
             <Image
                 style={styles.image}
                 source={require(`../assets/images/alphabet.jpg`)}
@@ -38,6 +47,11 @@ export default function SubjectCard2({
 
                 </View>
             </View>
+            {selected && (<View style={[{
+                borderTopColor: lighterColor
+            }, styles.bottomArrow]}>
+
+            </View>)}
         </View>
     )
 }
@@ -50,11 +64,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         display: "flex",
         alignItems: 'stretch',
-        elevation: 3,
-        shadowColor: 'black',
-        shadowOpacity: 0.2,
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 10,
     },
     image: {
         width: '100%',
@@ -86,5 +95,16 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '100%',
         backgroundColor: '#00D9CD',
+    },
+    bottomArrow: {
+        width: 0,
+        height: 0,
+        borderWidth: 15,
+        borderColor: 'transparent',
+        borderTopColor: 'white',
+        position: "absolute",
+        top: '100%',
+        left: '50%',
+        transform: [{ translateX: -10 }],
     }
 })
