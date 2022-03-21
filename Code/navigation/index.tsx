@@ -70,11 +70,13 @@ function BottomTabNavigator() {
         tabBarStyle: {
           shadowColor: 'black',
           shadowOpacity: 0.15,
-          shadowOffset: { width: 0, height: 2 },
+          shadowOffset: { width: 0, height: 3 },
           shadowRadius: 10,
           backgroundColor: '#FFFFFF',
           elevation: 3,
           height: 60,
+          borderTopRightRadius: 30,
+          borderTopLeftRadius: 30,
         }
 
       }}
@@ -85,7 +87,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Tab One',
-          tabBarIcon: (props) => <TabBarIcon name="home" {...props} text="Home" />,
+          tabBarIcon: (props) => <TabBarIcon name="home" {...props}  />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -106,16 +108,14 @@ function BottomTabNavigator() {
         name="Lectures"
         component={Lectures}
         options={{
-          title: 'Lectures',
-          tabBarIcon: (props) => <TabBarIcon name="book" {...props} text="Lectures" />,
+          tabBarIcon: (props) => <TabBarIcon name="book" {...props} />,
         }}
       />
       <BottomTab.Screen
         name="Profile"
         component={Profile}
         options={{
-          title: 'Profile',
-          tabBarIcon: (props) => <TabBarIcon name="book" {...props} text="Profile" />,
+          tabBarIcon: (props) => <TabBarIcon name="user" {...props} />,
         }}
       />
 
@@ -129,21 +129,15 @@ function BottomTabNavigator() {
 interface tabBarIconProps {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
-  text: string;
   focused: boolean;
 }
-function TabBarIcon({ name, color, text, focused }: tabBarIconProps) {
+function TabBarIcon({ name, color, focused }: tabBarIconProps) {
   return (
     <View style={tabBarStyle.container}>
 
       {/* change with svg  */}
       <FontAwesome size={30} style={{ marginBottom: -3 }} name={name} color={color} />
-      <Text style={[tabBarStyle.text, {
-        fontWeight: focused ? "bold" : "normal",
-        color: color
-      }]}>
-        {text}
-      </Text>
+
     </View>
   );
 }
