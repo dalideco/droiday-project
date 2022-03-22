@@ -37,7 +37,6 @@ export default function TabTwoScreen() {
 
   //selected look
   const [looked, setLooked] = useState<lookedType>("ALL")
-  const [lookeds, setLookeds] = useState<lookedsType>(LOOKEDS)
   const changeLooked = (l: lookedType) => {
     setLooked(l)
   }
@@ -50,7 +49,7 @@ export default function TabTwoScreen() {
 
   //value to provide
   const value = {
-    looked, lookeds,
+    looked, 
     changeLooked,
     subject, changeSubject,
   }

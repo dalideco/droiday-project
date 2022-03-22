@@ -101,3 +101,17 @@ export const COURSES: Course[] = [
         ]
     }
 ]
+
+
+export const BADGES = [
+    {
+        name: "All-in Master",
+        description: "Finish all lessons of a chapter",
+        image: require('../assets/images/adaptive-icon.png')
+    },
+    {
+        name: "All-in Master",
+        description: "Finish all lessons of a chapter",
+        image: require('../assets/images/adaptive-icon.png')
+    }
+]

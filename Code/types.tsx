@@ -62,3 +62,10 @@ export type Course = {
   studying: boolean,
   saved: boolean, 
 }
+
+//badges
+export type Badge = {
+  name: string,
+  description: string, 
+  image: any
+}
