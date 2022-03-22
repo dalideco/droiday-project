@@ -17,7 +17,7 @@ export const LOOKEDS: lookedsType = [
 
 export const SUBJECTS: Subject[] = [
     {
-        name: "Alphabets and phonics",
+        name: "Alphabet and phonics",
         image: require('../assets/images/alphabet.jpg')
     },
     {
@@ -33,23 +33,23 @@ export const SUBJECTS: Subject[] = [
 export const COURSES: Course[] = [
     {
         name: "Introduction to Alphabets",
-        subjectName: "Alphabets and phonics",
+        subjectName: "Alphabet and phonics",
         studying: false,
         saved: false,
         sections : [
             {
-                name:"What are alphabets?",
-                description: "What are the purpose?",
+                name:"What is the alphabet?",
+                description: "What does it serve for?",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
-                description: "What are the purpose?",
+                name: "Types ",
+                description: "English isn't the only language.",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
-                description: "What are the purpose?",
+                name: "What is the alphabet?",
+                description: "What does it serve for?",
                 completed: false,
             },
         ]
