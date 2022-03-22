@@ -34,3 +34,31 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+//looked
+export type lookedType = "ALL"|"STUDYING"|"SAVED"
+export type lookedsType = {
+  name: lookedType, 
+  courses: any[]
+}[]
+
+//subject
+export type SubjectName = "Alphabets and phonics"| "Numbers" | "Computer Science"
+export type Subject = {
+  name: SubjectName,
+  image ?:any
+}
+
+//courses 
+export type Section = {
+  name: string, 
+  description: string, 
+  completed : boolean ,
+}
+export type Course = {
+  name: string, 
+  sections:Section[],
+  subjectName: SubjectName,
+  studying: boolean,
+  saved: boolean, 
+}

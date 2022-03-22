@@ -1,12 +1,13 @@
-import { View, Image } from "react-native"
+import { View, Image, Touchable, TouchableOpacity } from "react-native"
 import { StyleSheet } from "react-native"
 import { useThemeColor } from "./Themed"
 import { Text } from "./Themed"
 interface props {
     title: string,
-    thumbnail: string,
+    thumbnail: any,
     total: number,
-    selected?: boolean
+    selected?: boolean,
+    onPress: () => void
 }
 
 const shadow = {
@@ -21,18 +22,23 @@ export default function SubjectCard2({
     title,
     thumbnail,
     total,
-    selected = false
+    selected = false,
+    onPress = () => { }
 }: props) {
 
     const lighterColor = useThemeColor({}, 'lighterColor')
 
     return (
-        <View style={[styles.container, {
-            backgroundColor: lighterColor,
-        },selected?shadow:{}]}>
+        <TouchableOpacity
+            onPress= {onPress}
+            activeOpacity={0.6}
+            style={[styles.container, {
+                backgroundColor: lighterColor,
+            }, selected ? shadow : {}]}
+        >
             <Image
                 style={styles.image}
-                source={require(`../assets/images/alphabet.jpg`)}
+                source={thumbnail}
             ></Image>
             <View style={styles.content}>
                 <Text style={styles.courseName}>
@@ -52,7 +58,7 @@ export default function SubjectCard2({
             }, styles.bottomArrow]}>
 
             </View>)}
-        </View>
+        </TouchableOpacity>
     )
 }
 

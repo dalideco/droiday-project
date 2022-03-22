@@ -6,108 +6,79 @@ import { Dimensions } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, ScrollView, useThemeColor } from '../components/Themed';
 import { TouchableOpacity } from 'react-native';
+import { createContext, useContext, useState } from 'react';
+import { lookedsType, lookedType, Subject, SubjectName } from '../types';
+import Selector from '../components/lectures/Selector';
+import SubjectSelector from '../components/lectures/SubjectSelector';
+import { LOOKEDS } from '../constants/InitialData';
+import Courses from '../components/lectures/Courses';
 
 const { width } = Dimensions.get('screen')
 
-export default function TabTwoScreen() {
-  
-  const lighterColor = useThemeColor({},'lighterColor')
-  const selectedType = "ALL"
-  const backgroundColor = useThemeColor({}, "background")
+const LecturesContext = createContext<{
+  looked: lookedType,
+  changeLooked: (l: lookedType) => void,
+  subject: SubjectName,
+  changeSubject: (s: SubjectName) => void,
+}>({
+  looked: "ALL",
+  changeLooked: () => { },
+  subject: "Alphabets and phonics",
+  changeSubject: () => { }
+})
 
-  return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.container}>
-        <View style={{ height: 50 }}></View>
-        <View style={[styles.buttonRow,{backgroundColor:lighterColor}]}>
-          <TouchableOpacity style={[styles.headerButton,{borderLeftWidth:0}]}>
-            <Text style={[styles.textCenter, {
-              fontWeight: (selectedType==="ALL")?"700":"400"
-            }]}>ALL</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.headerButton,{borderLeftColor:backgroundColor}]}>
-            <Text style={[styles.textCenter]}>STUDYING</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.headerButton,{borderLeftColor:backgroundColor}]}>
-            <Text style={[styles.textCenter]}>SAVED</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          style={{ width }}
-        >
-          <SubjectCard2
-            title="Alphabet and phonics"
-            thumbnail="Science"
-            selected
-            total={8}
-          />
-          <SubjectCard2
-            title="Alphabet and phonics"
-            thumbnail="Science"
-            total={8}
-          />
-          <SubjectCard2
-            title="Alphabet and phonics"
-            thumbnail="Science"
-            total={8}
-          />
-          <SubjectCard2
-            title="Alphabet and phonics"
-            thumbnail="Science"
-            total={8}
-          />
-        </ScrollView>
-
-        <View>
-          <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          />
-          <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          />
-          <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          />
-          <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          />
-          <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          />
-        </View>
-
-      </View>
-    </ScrollView>
-  );
+//exporting hook
+export function useLectures() {
+  return useContext(LecturesContext)
 }
 
+//main component
+export default function TabTwoScreen() {
 
-{/* <SubjectCard3
-            subject="Alphabet and phonics"
-            progress={50}
-            total={8}
-          /> */}
-{/* <SubjectCard2
-            title="Alphabet and phonics"
-            thumbnail="Science"
-            total={8}
+  //selected look
+  const [looked, setLooked] = useState<lookedType>("ALL")
+  const [lookeds, setLookeds] = useState<lookedsType>(LOOKEDS)
+  const changeLooked = (l: lookedType) => {
+    setLooked(l)
+  }
 
-          /> */}
+  //selected subject
+  const [subject, setSubject] = useState<SubjectName>("Alphabets and phonics")
+  const changeSubject = (s: SubjectName) => {
+    setSubject(s)
+  }
 
+  //value to provide
+  const value = {
+    looked, lookeds,
+    changeLooked,
+    subject, changeSubject,
+  }
+
+  return (
+    <LecturesContext.Provider value={value}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.container}>
+
+          {/* space on top */}
+          <View style={{ height: 50 }}></View>
+
+          {/* selecting look */}
+          <Selector />
+
+          {/* selecting subject */}
+          <SubjectSelector />
+
+          {/* courses display */}
+          <Courses />
+
+        </View>
+      </ScrollView>
+    </LecturesContext.Provider>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -124,20 +95,5 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-  buttonRow: {
-    backgroundColor:'red',
-    display:'flex',
-    flexDirection:'row',
-    borderRadius:15,
-    overflow: "hidden"
-  },
-  headerButton: {
-    padding: 15,
-    width: 110,
-    textAlign:'center',
-    borderLeftWidth: 2
-  },
-  textCenter:{
-    textAlign:'center'
-  }
+
 });
