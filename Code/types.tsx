@@ -43,7 +43,7 @@ export type lookedsType = {
 }[]
 
 //subject
-export type SubjectName = "Alphabets and phonics"| "Numbers" | "Computer Science"
+export type SubjectName = "Alphabet and phonics"| "Numbers" | "Computer Science"
 export type Subject = {
   name: SubjectName,
   image ?:any
