@@ -21,6 +21,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import { Text } from '../components/Themed';
 import { StyleSheet } from 'react-native';
+import Signup from '../screens/Signup';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -40,11 +41,16 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='Signup'>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+      </Stack.Group>
+
+      <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}/>
+      <Stack.Group>
+
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -55,6 +61,7 @@ function RootNavigator() {
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
+
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();

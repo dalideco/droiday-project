@@ -67,7 +67,7 @@ export function TextInput(props: TextInputProps) {
     paddingTop: 15,
     paddingLeft: 10,
     paddingBottom: 15,
-    width: 300,
+    width: '100%',
     borderRadius: 15,
     elevation: 3,
     shadowColor: 'black',
@@ -78,12 +78,63 @@ export function TextInput(props: TextInputProps) {
   </DefaultInput>
 }
 
-export function Button(props: TouchableOpacityProps) {
-  const { style, ...otherProps } = props;
+interface ButtonProps extends TouchableOpacityProps {
+  textStyle?: any
+}
+
+export function Button(props: ButtonProps) {
+  const { style, children, textStyle, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'tint');
-  return <TouchableOpacity
-    style={[{ backgroundColor }, style]}
-    {...otherProps}></TouchableOpacity>
+  const textColor = useThemeColor({}, 'background');
+  return (
+    <TouchableOpacity
+      style={[{
+        backgroundColor,
+        borderRadius: 10,
+        paddingTop: 15,
+        paddingBottom: 15,
+        paddingLeft: 60,
+        paddingRight: 60,
+        elevation: 3,
+        shadowColor: 'black',
+        shadowOpacity: 0.15,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 10,
+      }, style]}
+      {...otherProps}
+    >
+      <Text
+        style={[
+          {
+            color: textColor,
+            textAlign:'center'
+          },
+          textStyle
+        ]}
+      >{children}</Text>
+    </TouchableOpacity>
+  )
+}
+
+export function ATag(props:ButtonProps){
+  const { style, children, textStyle, ...otherProps } = props;
+  const tintColor = useThemeColor({}, 'tint');
+  return (
+    <TouchableOpacity
+      style={[{
+      }, style]}
+      {...otherProps}
+    >
+      <Text
+        style={[
+          {
+            color: tintColor,
+          },
+          textStyle
+        ]}
+      >{children}</Text>
+    </TouchableOpacity>
+  )
 }
 
 

@@ -23,7 +23,7 @@ const LecturesContext = createContext<{
 }>({
   looked: "ALL",
   changeLooked: () => { },
-  subject: "Alphabets and phonics",
+  subject: "Alphabet and phonics",
   changeSubject: () => { }
 })
 
@@ -42,7 +42,7 @@ export default function TabTwoScreen() {
   }
 
   //selected subject
-  const [subject, setSubject] = useState<SubjectName>("Alphabets and phonics")
+  const [subject, setSubject] = useState<SubjectName>("Alphabet and phonics")
   const changeSubject = (s: SubjectName) => {
     setSubject(s)
   }

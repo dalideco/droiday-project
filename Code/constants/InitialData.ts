@@ -1,4 +1,4 @@
-import { Course, lookedsType, Subject } from "../types"
+import { Badge, Course, Friend, lookedsType, Subject } from "../types"
 
 export const LOOKEDS: lookedsType = [
     {
@@ -103,7 +103,7 @@ export const COURSES: Course[] = [
 ]
 
 
-export const BADGES = [
+export const BADGES:Badge[] = [
     {
         name: "All-in Master",
         description: "Finish all lessons of a chapter",
@@ -113,5 +113,21 @@ export const BADGES = [
         name: "All-in Master",
         description: "Finish all lessons of a chapter",
         image: require('../assets/images/adaptive-icon.png')
+    }
+]
+
+export const FRIENDS: Friend[]=[
+    {
+        name: "Med Amine Hamdouni", 
+        xp: 111500,
+        image: require('../assets/images/img.jpeg')
+    }
+]
+
+export const SCORES: Friend[]=[
+    {
+        name: "Dali Sahnoun", 
+        xp: 111111500,
+        image: require('../assets/images/img.jpeg')
     }
 ]

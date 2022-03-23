@@ -17,6 +17,8 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  Signup: undefined; 
+  
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -68,4 +70,11 @@ export type Badge = {
   name: string,
   description: string, 
   image: any
+}
+
+//friends
+export type Friend = {
+  name: string,
+  xp: number,
+  image: any,
 }

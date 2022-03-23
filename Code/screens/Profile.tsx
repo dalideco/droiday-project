@@ -8,7 +8,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import Selector from "../components/profile/Selector";
 import { useState } from "react";
 import { useTheme } from "@react-navigation/native";
-import { BADGES } from "../constants/InitialData";
+import { BADGES, FRIENDS, SCORES } from "../constants/InitialData";
+import { formatNumber } from "../functions/formtNumber";
 
 type Selected = "BADGES" | "FRIENDS" | "SCORES"
 const OPTIONS: Selected[] = ["BADGES", "FRIENDS", "SCORES"]
@@ -42,10 +43,8 @@ export default function TabTwoScreen() {
 
         <View style={[{ backgroundColor: lightColor }, styles.badgesContainer]}>
 
-
-
-          {(selected === "BADGES") && BADGES.map(({ name, description, image }) => (
-            <DefaultView style={styles.badge}>
+          {(selected === "BADGES") && BADGES.map(({ name, description, image }, index) => (
+            <DefaultView style={styles.badge} key={index}>
               <Image
                 style={[styles.badgeImage]}
                 source={image}
@@ -56,6 +55,34 @@ export default function TabTwoScreen() {
               </DefaultView>
             </DefaultView>
           ))}
+
+          {(selected === "FRIENDS") && FRIENDS.map(({ name, xp, image }, index) => (
+            <DefaultView style={styles.badge} key={index}>
+              <Image
+                style={[styles.badgeImage, { borderRadius: 50 }]}
+                source={image}
+              ></Image>
+              <DefaultView style={styles.badgeContent}>
+                <Text style={styles.badgeTitle}>{name}</Text>
+                <Text style={styles.badgeDescription}> {formatNumber(xp)} xp</Text>
+              </DefaultView>
+            </DefaultView>
+          ))}
+
+          {(selected === "SCORES") && SCORES.map(({ name, xp, image }, index) => (
+            <DefaultView style={styles.badge} key={index}>
+              <Image
+                style={[styles.badgeImage, { borderRadius: 50 }]}
+                source={image}
+              ></Image>
+              <DefaultView style={styles.badgeContent}>
+                <Text style={styles.badgeTitle}>{name}</Text>
+                <Text style={styles.badgeDescription}> {formatNumber(xp)} xp</Text>
+              </DefaultView>
+            </DefaultView>
+          ))}
+
+
         </View>
       </View>
     </ScrollView>
@@ -126,9 +153,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   badge: {
-    display:'flex', 
+    display: 'flex',
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     marginTop: 10,
     marginBottom: 10
   },
@@ -137,13 +164,13 @@ const styles = StyleSheet.create({
     height: 50
   },
   badgeTitle: {
-    fontSize:20,
+    fontSize: 20,
     fontWeight: '600'
   },
   badgeDescription: {
-    color:'grey'
+    color: 'grey'
   },
   badgeContent: {
-    marginLeft: 10
+    marginLeft: 15
   }
 });
