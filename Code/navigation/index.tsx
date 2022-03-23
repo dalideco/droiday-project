@@ -22,6 +22,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import { Text } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 import Signup from '../screens/Signup';
+import PasswordSelect from '../components/signup/PasswordSelect';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -48,9 +49,10 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
 
+      {/* signing up */}
       <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}/>
-      <Stack.Group>
-
+      <Stack.Group screenOptions={{presentation: "card"}}>
+        <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{headerShown: false}} />
       </Stack.Group>
     </Stack.Navigator>
   );

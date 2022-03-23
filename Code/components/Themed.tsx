@@ -7,7 +7,7 @@ import {
   Text as DefaultText,
   View as DefaultView, ScrollView as DefaultScroll,
   ScrollViewProps, TextInput as DefaultInput,
-  TextInputProps, ButtonProps,
+  TextInputProps,
   TouchableOpacity,
   TouchableOpacityProps
 } from 'react-native';
