@@ -15,6 +15,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import { InputCaseType } from '../types';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -79,11 +80,12 @@ export function TextInput(props: TextInputProps) {
 }
 
 interface ButtonProps extends TouchableOpacityProps {
-  textStyle?: any
+  textStyle?: any,
+  LeftSVG?: (props: { style: any }) => JSX.Element
 }
 
 export function Button(props: ButtonProps) {
-  const { style, children, textStyle, ...otherProps } = props;
+  const { style, children, textStyle, LeftSVG, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'tint');
   const textColor = useThemeColor({}, 'background');
   return (
@@ -107,16 +109,35 @@ export function Button(props: ButtonProps) {
         style={[
           {
             color: textColor,
-            textAlign:'center'
+            textAlign: 'center'
           },
           textStyle
         ]}
       >{children}</Text>
+      <DefaultView
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+        }}
+      >
+        {LeftSVG && (
+          <LeftSVG style={{
+            marginRight: 10
+          }}></LeftSVG>
+        )}
+      </DefaultView>
+
     </TouchableOpacity>
   )
 }
 
-export function ATag(props:ButtonProps){
+export function ATag(props: ButtonProps) {
   const { style, children, textStyle, ...otherProps } = props;
   const tintColor = useThemeColor({}, 'tint');
   return (
@@ -189,6 +210,76 @@ export function InputWithButton(props: any) {
   </DefaultView>
 }
 
+
+
+
+interface MultipleInputsProps extends ViewProps {
+  inputs: InputCaseType[],
+  onChange: (input: { key: string, value: string }) => void
+}
+
+export const MultipleInputs = ({ inputs, style, onChange, ...otherProps }: MultipleInputsProps) => {
+
+  const backgroundColor = useThemeColor({}, 'lighterColor')
+  const background = useThemeColor({}, 'background')
+
+  return (
+    <DefaultView
+      style={[{
+        backgroundColor,
+        display: 'flex',
+        borderRadius: 20,
+        elevation: 3,
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 10,
+      }, style]}
+      {...otherProps}
+    >
+      <DefaultView
+        style={[{
+          backgroundColor,
+          display: 'flex',
+          borderRadius: 20,
+          overflow: 'hidden'
+        }]}
+      >
+        {inputs.map(({ key, value, RightComponent }, index) => {
+          return (
+            <DefaultView
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                borderBottomWidth: (index === inputs.length - 1) ? 0 : 2,
+                borderBottomColor: background,
+                paddingTop: 15,
+                paddingLeft: 10,
+                paddingBottom: 15,
+              }}
+            >
+              <DefaultInput
+                placeholder={key}
+                value={value}
+                onChangeText={text => { onChange({ key: key, value: text }) }}
+                style={{
+                  flex: 1,
+                  fontSize: 20
+                }}
+              ></DefaultInput>
+              {RightComponent && (
+                <RightComponent></RightComponent>
+              )}
+
+            </DefaultView>
+          )
+        })}
+      </DefaultView>
+
+    </DefaultView>
+  )
+}
 
 
 

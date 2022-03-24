@@ -23,6 +23,7 @@ import { Text } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 import Signup from '../screens/Signup';
 import PasswordSelect from '../components/signup/PasswordSelect';
+import Login from '../components/signup/Login';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -53,6 +54,7 @@ function RootNavigator() {
       <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}/>
       <Stack.Group screenOptions={{presentation: "card"}}>
         <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{headerShown: false}} />
+        <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
       </Stack.Group>
     </Stack.Navigator>
   );

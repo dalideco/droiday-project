@@ -1,10 +1,12 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
-import { ATag, Text, View } from '../components/Themed'
+import { ATag, Text, useThemeColor, View } from '../components/Themed'
 import { RootStackScreenProps } from '../types'
 import { StyleSheet } from 'react-native'
 import { TextInput } from '../components/Themed'
 import { Button } from '../components/Themed'
+import { FontAwesome } from '@expo/vector-icons'
+import { LeftSVG } from '../components/LeftSVG'
 
 const { width, height } = Dimensions.get('screen');
 
@@ -19,14 +21,18 @@ export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
             <View style={styles.contained}>
                 <TextInput style={{ marginBottom: 60 }} placeholder="E-mail"></TextInput>
                 <Text style={[styles.centeredText, styles.smallText]}>Already have an account?</Text>
-                <ATag textStyle={{ textAlign: 'center' }}>SIGN IN</ATag>
+                <ATag
+                    textStyle={{ textAlign: 'center' }}
+                    onPress={()=>{navigation.navigate('Login')}}
+                >SIGN IN</ATag>
             </View>
             <View style={styles.contained}>
                 <Button
                     style={{
                         marginBottom: 20
                     }}
-                    onPress={()=>{navigation.navigate('PasswordSelect')}}
+                    onPress={() => { navigation.navigate('PasswordSelect') }}
+                    LeftSVG={LeftSVG}
                 >
                     Continue
                 </Button>
@@ -35,6 +41,8 @@ export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
         </View >
     )
 }
+
+
 
 const styles = StyleSheet.create({
     container: {

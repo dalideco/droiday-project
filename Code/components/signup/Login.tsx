@@ -2,23 +2,27 @@ import { FontAwesome } from '@expo/vector-icons'
 import React, { useCallback, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 import { InputCaseType, RootStackScreenProps } from '../../types'
+import { LeftSVG } from '../LeftSVG'
 import { ATag, Button, MultipleInputs, Text, TextInput, useThemeColor, View } from '../Themed'
 
 const { width, height } = Dimensions.get('window')
 
-export default function PasswordSelect({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
+export default function Login({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
 
   const tintColor = useThemeColor({}, "tint")
   const lighterColor = useThemeColor({}, "lighterColor")
 
   const [inputs, setInputs] = useState<InputCaseType[]>([
     {
-      key: 'Password',
+      key: 'E-mail',
       value: ''
     },
     {
-      key: 'Repeat password',
+      key: 'Password',
       value: '',
+      RightComponent:()=>(
+          <ATag style={{marginRight: 10}}>FORGOT</ATag>
+      )
     }
   ])
 
@@ -56,8 +60,9 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
 
       {/* page layout */}
       <View style={styles.first}>
-        <Text style={[styles.centeredText, styles.bigText]}>Password</Text>
-        <Text style={[styles.centeredText, styles.smallText]}>Create you new Password</Text>
+        <Text style={[styles.centeredText, styles.bigText]}>Log in</Text>
+        <Text style={[styles.centeredText, styles.smallText]}>Access you account by typing</Text>
+        <Text style={[styles.centeredText, styles.smallText]}>your login details</Text>
       </View>
       <View style={styles.contained}>
         <MultipleInputs
@@ -71,9 +76,10 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
           style={{
             marginBottom: 20
           }}
-          onPress={() => { navigation.navigate('PasswordSelect') }}
+          onPress={() => { navigation.navigate('Root') }}
+          LeftSVG={LeftSVG}
         >
-          Create Account
+          Continue
         </Button>
       </View>
 

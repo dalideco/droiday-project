@@ -19,6 +19,7 @@ export type RootStackParamList = {
   NotFound: undefined;
   Signup: undefined; 
   PasswordSelect: undefined; 
+  Login: undefined; 
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -77,4 +78,11 @@ export type Friend = {
   name: string,
   xp: number,
   image: any,
+}
+
+// multiple inputs component
+export type InputCaseType = {
+  key: string,
+  value: string,
+  RightComponent?: (props: any) => JSX.Element
 }
