@@ -71,7 +71,7 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
           style={{
             marginBottom: 20
           }}
-          onPress={() => { navigation.navigate('PasswordSelect') }}
+          onPress={() => { navigation.navigate('PhoneNumber') }}
         >
           Create Account
         </Button>

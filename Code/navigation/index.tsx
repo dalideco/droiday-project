@@ -24,6 +24,7 @@ import { StyleSheet } from 'react-native';
 import Signup from '../screens/Signup';
 import PasswordSelect from '../components/signup/PasswordSelect';
 import Login from '../components/signup/Login';
+import PhoneNumber from '../components/signup/PhoneNumber';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -51,10 +52,11 @@ function RootNavigator() {
       </Stack.Group>
 
       {/* signing up */}
-      <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}/>
-      <Stack.Group screenOptions={{presentation: "card"}}>
-        <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{headerShown: false}} />
-        <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+      <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
+      <Stack.Group screenOptions={{ presentation: "card" }}>
+        <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="PhoneNumber" component={PhoneNumber} options={{ headerShown: false }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -98,7 +100,7 @@ function BottomTabNavigator() {
         component={Home}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Tab One',
-          tabBarIcon: (props) => <TabBarIcon name="home" {...props}  />,
+          tabBarIcon: (props) => <TabBarIcon name="home" {...props} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}

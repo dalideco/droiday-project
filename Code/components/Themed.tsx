@@ -79,6 +79,45 @@ export function TextInput(props: TextInputProps) {
   </DefaultInput>
 }
 
+
+interface TextInputAdvancedProps extends TextInputProps {
+  LeftComponent?: (props?:any) => JSX.Element,
+}
+export function TextInputAdvanced({ style, LeftComponent, ...otherProps }: TextInputAdvancedProps) {
+  const backgroundColor = useThemeColor({}, 'lighterColor');
+  return (
+    <DefaultView style={[{
+      backgroundColor,
+      paddingTop: 15,
+      paddingLeft: 10,
+      paddingBottom: 15,
+      borderRadius: 15,
+      width: 300,
+      elevation: 3,
+      shadowColor: 'black',
+      shadowOpacity: 0.15,
+      shadowOffset: { width: 0, height: 2 },
+      shadowRadius: 10,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems:'center',
+
+    }, style]}>
+      {LeftComponent && (
+        <LeftComponent></LeftComponent>
+      )}
+      <DefaultInput
+        style={[{
+          fontSize: 20,
+          flex: 1,
+        }]}
+        {...otherProps}
+      >
+      </DefaultInput>
+    </DefaultView>
+  )
+}
+
 interface ButtonProps extends TouchableOpacityProps {
   textStyle?: any,
   LeftSVG?: (props: { style: any }) => JSX.Element
@@ -248,6 +287,7 @@ export const MultipleInputs = ({ inputs, style, onChange, ...otherProps }: Multi
         {inputs.map(({ key, value, RightComponent }, index) => {
           return (
             <DefaultView
+              key={key}
               style={{
                 display: 'flex',
                 flexDirection: 'row',
