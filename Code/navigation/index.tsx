@@ -25,6 +25,9 @@ import Signup from '../screens/Signup';
 import PasswordSelect from '../components/signup/PasswordSelect';
 import Login from '../components/signup/Login';
 import PhoneNumber from '../components/signup/PhoneNumber';
+import SendNotif from '../components/signup/SendNotif';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -40,12 +43,23 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
  */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName='Root'>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+    <Stack.Navigator initialRouteName='Signup'
+      screenOptions={{
+        gestureEnabled:true,
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
+    >
+      <Stack.Screen name="Root" component={BottomTabNavigator}
+        options={{
+          headerShown: false,
+          gestureEnabled: true,
+          
+        }}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -57,6 +71,7 @@ function RootNavigator() {
         <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="PhoneNumber" component={PhoneNumber} options={{ headerShown: false }} />
+        <Stack.Screen name="SendNotif" component={SendNotif} options={{ headerShown: false }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -90,7 +105,8 @@ function BottomTabNavigator() {
           height: 60,
           borderTopRightRadius: 30,
           borderTopLeftRadius: 30,
-        }
+        },
+
 
       }}
 
@@ -115,6 +131,7 @@ function BottomTabNavigator() {
               />
             </Pressable>
           ),
+
         })}
       />
       <BottomTab.Screen

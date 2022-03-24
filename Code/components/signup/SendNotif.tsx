@@ -8,11 +8,9 @@ import { ATag, Button, MultipleInputs, Text, TextInput, TextInputAdvanced, useTh
 
 const { width, height } = Dimensions.get('window')
 
-export default function PhoneNumber({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
+export default function SendNotif({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
 
     const tintColor = useThemeColor({}, "tint")
-    const lighterColor = useThemeColor({}, "lighterColor")
-    const backgroundColor = useThemeColor({}, "background")
 
     return (
         <View
@@ -39,63 +37,42 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
             {/* skip button */}
             <ATag
                 style={{
-                    position: 'absolute', 
+                    position: 'absolute',
                     top: 30,
                     right: 10
                 }}
                 textStyle={{
                     textTransform: 'uppercase',
-                    color:'grey',
+                    color: 'grey',
                     fontWeight: '500'
                 }}
-                onPress={()=>{navigation.navigate('Root')}}
+                onPress={() => { navigation.navigate('Root') }}
             >Skip</ATag>
 
             {/* page layout */}
             <View style={styles.first}>
-                <Text style={[styles.centeredText, styles.bigText]}>Getting Started</Text>
-                <Text style={[styles.centeredText, styles.smallText]}>Secure your account by enabling the 2-</Text>
-                <Text style={[styles.centeredText, styles.smallText]}>step verification using your phone number.</Text>
+                <Image source={require(`../../assets/images/img.jpeg`)} style={styles.image} />
             </View>
             <View style={styles.contained}>
-                <TextInputAdvanced
-                    style={{ marginBottom: 60 }}
-                    placeholder="Mobile Number"
-                    LeftComponent={() => (
-                        <View style={{
-                            backgroundColor: lighterColor,
-                            display:'flex',
-                            flexDirection:'row',
-                            alignItems:'center',
-                            borderRightWidth: 2,
-                            borderRightColor: backgroundColor,
-                            paddingRight: 5,
-                            marginRight: 5
-                        }}>
-                            <Image
-                                source={require(`../../assets/images/img.jpeg`)}
-                                style={{
-                                    width: 30,
-                                    height: 30,
-                                    borderRadius:40,
-                                    marginRight: 5
-                                }}
-                            />
-                            <Text>+216</Text>
-                        </View>
-                    )}
-                ></TextInputAdvanced>
+                <Text style={[styles.centeredText, styles.bigText]}>Notifications</Text>
+                <Text style={[styles.centeredText, styles.smallText]}>Stay notified about our new</Text>
+                <Text style={[styles.centeredText, styles.smallText]}>resources, challenges and daily</Text>
+                <Text style={[styles.centeredText, styles.smallText]}>goals.</Text>
             </View>
-            <View style={styles.contained}>
+            <View style={[styles.contained, styles.flexVerticalCenter]}>
                 <Button
                     style={{
                         marginBottom: 20
                     }}
-                    onPress={() => { navigation.navigate('SendNotif') }}
+                    onPress={() => { navigation.navigate('Root') }}
                     LeftSVG={LeftSVG}
                 >
-                    Continue
+                    ALLOW
                 </Button>
+                <ATag
+                    textStyle={{ color: 'grey' }}
+                    onPress={()=>{navigation.navigate('Root')}}
+                >SKIP</ATag>
             </View>
 
         </View>
@@ -108,7 +85,9 @@ const styles = StyleSheet.create({
         height,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 30,
+        paddingBottom: 30
     },
     bigText: {
         fontSize: 25,
@@ -127,5 +106,18 @@ const styles = StyleSheet.create({
     },
     contained: {
         width: '80%'
+    },
+    image: {
+        width: 180,
+        height: 180,
+        borderRadius: 180 / 2,
+        shadowColor: "black",
+        shadowOpacity: 0.15,
+        shadowOffset: { width: 100, height: 100 },
+        shadowRadius: 10,
+    },
+    flexVerticalCenter: {
+        display: 'flex',
+        alignItems: 'center'
     }
 })
