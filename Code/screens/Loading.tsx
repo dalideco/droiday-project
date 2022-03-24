@@ -12,7 +12,10 @@ export default function Loading({ navigation }: RootStackScreenProps<'Loading'>)
 
     useEffect(()=>{
         getUser().then(user=>{
-            if(!user) return navigation.navigate('Signup')
+            if(!user) {
+                navigation.navigate('Signup')
+                return 
+            }
             navigation.navigate('Root')
         })
     },[])

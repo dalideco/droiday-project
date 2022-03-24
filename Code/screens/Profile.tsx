@@ -10,13 +10,15 @@ import { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { BADGES, FRIENDS, SCORES } from "../constants/InitialData";
 import { formatNumber } from "../functions/formtNumber";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { RootStackScreenProps } from "../types";
 
 type Selected = "BADGES" | "FRIENDS" | "SCORES"
 const OPTIONS: Selected[] = ["BADGES", "FRIENDS", "SCORES"]
 
 
 
-export default function TabTwoScreen() {
+export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
 
   const lightColor = useThemeColor({}, "lighterColor")
   const [selected, setSelected] = useState<Selected>("BADGES")
@@ -24,9 +26,12 @@ export default function TabTwoScreen() {
   return (
     <ScrollView>
       <View style={styles.bigContainer}>
-        <View style={styles.toolBar}>
+        <TouchableOpacity
+          style={styles.toolBar}
+          onPress={ ()=>{navigation.navigate('Settings')} }
+        >
           <FontAwesome size={30} name="gear" color="#344356" />
-        </View>
+        </TouchableOpacity>
         <View style={styles.container}>
           <Image source={require(`../assets/images/img.jpeg`)} style={styles.image} />
           <Text style={styles.title}>Sirajeddine Aissa</Text>

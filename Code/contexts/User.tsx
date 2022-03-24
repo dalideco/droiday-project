@@ -17,13 +17,15 @@ interface ContextData {
     updateUser:(key:keyof UserInterface, value: any)=>void,
     getUser: () => Promise<UserInterface | null>,
     saveUser:() => Promise<void>
+    removeUser: ()=>Promise<void>
 }
 
 const UserContext = createContext<ContextData>({
     user: null, 
     updateUser: (_key:keyof UserInterface, _value: any)=>{},
     getUser: ()=> new Promise(()=>{}),
-    saveUser:() => new Promise(()=>{})
+    saveUser:() => new Promise(()=>{}),
+    removeUser: ()=>new Promise(()=>{})
 })
 
 export function useUser(){
@@ -58,18 +60,16 @@ export function UserProvider({children}:{children: any}) {
             .setItem('user', JSON.stringify(user));
     }
 
-
-
-    //testing
-    useEffect(()=>{
-        console.log(user)
-    },[user])
+    const removeUser = ()=>{
+        return AsyncStorage.removeItem('user');
+    }
 
     const value: ContextData = {
         user:user,
         updateUser,
         getUser,
-        saveUser
+        saveUser,
+        removeUser
     }
 
     return (

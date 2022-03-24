@@ -12,6 +12,7 @@ import {
   TouchableOpacityProps
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useTheme } from '../contexts/Theme';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -21,7 +22,7 @@ export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
-  const theme = useColorScheme();
+  const {theme} = useTheme();
   const colorFromProps = props[theme];
 
   if (colorFromProps) {

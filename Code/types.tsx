@@ -23,6 +23,7 @@ export type RootStackParamList = {
   PhoneNumber:undefined;
   SendNotif: undefined;
   Loading: undefined;
+  Settings: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

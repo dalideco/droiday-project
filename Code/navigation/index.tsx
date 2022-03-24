@@ -9,7 +9,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable, View } from 'react-native';
-
+import { ThemeProvider } from '../contexts/Theme';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
@@ -29,17 +29,20 @@ import SendNotif from '../components/signup/SendNotif';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { UserProvider } from '../contexts/User';
 import Loading from '../screens/Loading';
+import Settings from '../components/profile/Settings';
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
-    <UserProvider>
-      <NavigationContainer
-        linking={LinkingConfiguration}
-        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <RootNavigator />
-      </NavigationContainer>
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <NavigationContainer
+          linking={LinkingConfiguration}
+          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <RootNavigator />
+        </NavigationContainer>
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 
@@ -53,7 +56,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName='Loading'
       screenOptions={{
-        headerShown:false,
+        headerShown: false,
         gestureEnabled: true,
         ...TransitionPresets.SlideFromRightIOS,
       }}
@@ -66,10 +69,13 @@ function RootNavigator() {
         }}
       />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      <Stack.Group screenOptions={{
+        ...TransitionPresets.ModalPresentationIOS
+      }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Group>
-      
+
 
       {/* signing up */}
       <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
