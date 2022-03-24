@@ -20,9 +20,20 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
             Search in the box below.
           </Text>
 
-          <InputWithButton>
+          <InputWithButton style={{
+            marginBottom: 20,
+            marginTop:20
+          }}>
           </InputWithButton>
 
+          <Text style={styles.study}>
+            DAILY TASKS
+          </Text>
+
+          <View>
+            <Text style={[styles.title]}>You have got 4 tasks </Text>
+            <Text style={[styles.title]}>For today!</Text>
+          </View>
 
           <Text style={styles.study}>
             STUDY IN PROGRESS
@@ -72,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 100
+    paddingTop: 50
     // backgroundColor: 'red',
   },
   smallContainer: {

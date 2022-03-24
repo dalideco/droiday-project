@@ -8,7 +8,7 @@ import { Button } from '../components/Themed'
 import { FontAwesome } from '@expo/vector-icons'
 import { LeftSVG } from '../components/LeftSVG'
 
-const { width, height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get('window');
 
 export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
     return (
