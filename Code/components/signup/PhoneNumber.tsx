@@ -2,6 +2,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { setStatusBarBackgroundColor } from 'expo-status-bar'
 import React, { useCallback, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { useUser } from '../../contexts/User'
 import { InputCaseType, RootStackScreenProps } from '../../types'
 import { LeftSVG } from '../LeftSVG'
 import { ATag, Button, MultipleInputs, Text, TextInput, TextInputAdvanced, useThemeColor, View } from '../Themed'
@@ -10,9 +11,22 @@ const { width, height } = Dimensions.get('window')
 
 export default function PhoneNumber({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
 
+
+    const { updateUser, saveUser } = useUser()
     const tintColor = useThemeColor({}, "tint")
     const lighterColor = useThemeColor({}, "lighterColor")
     const backgroundColor = useThemeColor({}, "background")
+
+    const [phoneNumber, setPhoneNumber] = useState("")
+
+    const next= useCallback(async()=>{
+        updateUser("number",{
+            countryCode: 216,
+            number: parseInt(phoneNumber)
+        })
+        await saveUser()
+        navigation.navigate("SendNotif")
+    },[phoneNumber])
 
     return (
         <View
@@ -39,16 +53,16 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
             {/* skip button */}
             <ATag
                 style={{
-                    position: 'absolute', 
+                    position: 'absolute',
                     top: 30,
                     right: 10
                 }}
                 textStyle={{
                     textTransform: 'uppercase',
-                    color:'grey',
+                    color: 'grey',
                     fontWeight: '500'
                 }}
-                onPress={()=>{navigation.navigate('Root')}}
+                onPress={() => { navigation.navigate('SendNotif') }}
             >Skip</ATag>
 
             {/* page layout */}
@@ -59,14 +73,16 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
             </View>
             <View style={styles.contained}>
                 <TextInputAdvanced
+                    value={ phoneNumber }
+                    onChangeText={(text)=>{setPhoneNumber(text)}}
                     style={{ marginBottom: 60 }}
                     placeholder="Mobile Number"
                     LeftComponent={() => (
                         <View style={{
                             backgroundColor: lighterColor,
-                            display:'flex',
-                            flexDirection:'row',
-                            alignItems:'center',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
                             borderRightWidth: 2,
                             borderRightColor: backgroundColor,
                             paddingRight: 5,
@@ -77,7 +93,7 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
                                 style={{
                                     width: 30,
                                     height: 30,
-                                    borderRadius:40,
+                                    borderRadius: 40,
                                     marginRight: 5
                                 }}
                             />
@@ -91,7 +107,7 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
                     style={{
                         marginBottom: 20
                     }}
-                    onPress={() => { navigation.navigate('SendNotif') }}
+                    onPress={next}
                     LeftSVG={LeftSVG}
                 >
                     Continue

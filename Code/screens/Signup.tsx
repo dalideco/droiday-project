@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Dimensions } from 'react-native'
 import { ATag, Text, useThemeColor, View } from '../components/Themed'
 import { RootStackScreenProps } from '../types'
@@ -7,10 +7,21 @@ import { TextInput } from '../components/Themed'
 import { Button } from '../components/Themed'
 import { FontAwesome } from '@expo/vector-icons'
 import { LeftSVG } from '../components/LeftSVG'
+import { useUser } from '../contexts/User'
 
 const { width, height } = Dimensions.get('window');
 
 export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
+
+    const {updateUser} = useUser()
+    const [email, setEmail] = useState("");
+
+    const next = useCallback(()=>{
+        //todo: verfiy email is a mail address
+        updateUser("email",email)
+        navigation.navigate('PasswordSelect')
+    },[email])
+
     return (
         <View style={styles.container}>
             <View style={styles.first}>
@@ -19,11 +30,16 @@ export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
                 <Text style={[styles.centeredText, styles.smallText]}>in the box below</Text>
             </View>
             <View style={styles.contained}>
-                <TextInput style={{ marginBottom: 60 }} placeholder="E-mail"></TextInput>
+                <TextInput
+                    style={{ marginBottom: 60 }}
+                    placeholder="E-mail"
+                    value={email}
+                    onChangeText={text=>{setEmail(text)}}
+                ></TextInput>
                 <Text style={[styles.centeredText, styles.smallText]}>Already have an account?</Text>
                 <ATag
                     textStyle={{ textAlign: 'center' }}
-                    onPress={()=>{navigation.navigate('Login')}}
+                    onPress={() => { navigation.navigate('Login') }}
                 >SIGN IN</ATag>
             </View>
             <View style={styles.contained}>
@@ -31,7 +47,7 @@ export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
                     style={{
                         marginBottom: 20
                     }}
-                    onPress={() => { navigation.navigate('PasswordSelect') }}
+                    onPress={next}
                     LeftSVG={LeftSVG}
                 >
                     Continue

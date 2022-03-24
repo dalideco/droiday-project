@@ -15,7 +15,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.smallContainer}>
-          <Text style={[styles.title]}>Hi, Sirajeddine</Text>
+          <Text style={[styles.title,{marginBottom: 15}]}>Hi, Sirajeddine</Text>
           <Text style={styles.subtitle}>
             Ready to learn something today?
           </Text>

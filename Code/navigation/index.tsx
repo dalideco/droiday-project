@@ -27,15 +27,19 @@ import Login from '../components/signup/Login';
 import PhoneNumber from '../components/signup/PhoneNumber';
 import SendNotif from '../components/signup/SendNotif';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import { UserProvider } from '../contexts/User';
+import Loading from '../screens/Loading';
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer
+        linking={LinkingConfiguration}
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <RootNavigator />
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 
@@ -47,23 +51,25 @@ const Stack = createStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName='Signup'
+    <Stack.Navigator initialRouteName='Loading'
       screenOptions={{
-        gestureEnabled:true,
+        headerShown:false,
+        gestureEnabled: true,
         ...TransitionPresets.SlideFromRightIOS,
       }}
     >
+      <Stack.Screen name="Loading" component={Loading}></Stack.Screen>
       <Stack.Screen name="Root" component={BottomTabNavigator}
         options={{
           headerShown: false,
           gestureEnabled: true,
-          
         }}
       />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
+      
 
       {/* signing up */}
       <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
@@ -90,7 +96,6 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: Colors[colorScheme].tint,
@@ -106,8 +111,6 @@ function BottomTabNavigator() {
           borderTopRightRadius: 30,
           borderTopLeftRadius: 30,
         },
-
-
       }}
 
     >

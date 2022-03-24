@@ -1,6 +1,7 @@
 import { FontAwesome } from '@expo/vector-icons'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
+import { useUser } from '../../contexts/User'
 import { InputCaseType, RootStackScreenProps } from '../../types'
 import { ATag, Button, MultipleInputs, Text, TextInput, useThemeColor, View } from '../Themed'
 
@@ -8,6 +9,8 @@ const { width, height } = Dimensions.get('window')
 
 export default function PasswordSelect({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
 
+
+  const {saveUser} = useUser();
   const tintColor = useThemeColor({}, "tint")
   const lighterColor = useThemeColor({}, "lighterColor")
 
@@ -30,6 +33,12 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
       return input; 
     }))
   }
+
+  const next = useCallback(()=>{
+    saveUser().then(()=>{
+      navigation.navigate('PhoneNumber')
+    });
+  },[])
 
   return (
     <View
@@ -71,7 +80,7 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
           style={{
             marginBottom: 20
           }}
-          onPress={() => { navigation.navigate('PhoneNumber') }}
+          onPress={next}
         >
           Create Account
         </Button>

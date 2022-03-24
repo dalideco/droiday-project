@@ -2,6 +2,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { setStatusBarBackgroundColor } from 'expo-status-bar'
 import React, { useCallback, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { useUser } from '../../contexts/User'
 import { InputCaseType, RootStackScreenProps } from '../../types'
 import { LeftSVG } from '../LeftSVG'
 import { ATag, Button, MultipleInputs, Text, TextInput, TextInputAdvanced, useThemeColor, View } from '../Themed'
@@ -10,7 +11,14 @@ const { width, height } = Dimensions.get('window')
 
 export default function SendNotif({ navigation }: RootStackScreenProps<'PasswordSelect'>) {
 
+    const {updateUser,saveUser}= useUser()
     const tintColor = useThemeColor({}, "tint")
+
+    const next= useCallback(async()=>{
+        updateUser("notified",true)
+        await saveUser()
+        navigation.navigate('Root')
+    },[])
 
     return (
         <View
@@ -64,14 +72,14 @@ export default function SendNotif({ navigation }: RootStackScreenProps<'Password
                     style={{
                         marginBottom: 20
                     }}
-                    onPress={() => { navigation.navigate('Root') }}
+                    onPress={next}
                     LeftSVG={LeftSVG}
                 >
                     ALLOW
                 </Button>
                 <ATag
                     textStyle={{ color: 'grey' }}
-                    onPress={()=>{navigation.navigate('Root')}}
+                    onPress={()=>{;navigation.navigate('Root')}}
                 >SKIP</ATag>
             </View>
 
