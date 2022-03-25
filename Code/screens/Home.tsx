@@ -6,13 +6,16 @@ import { Dimensions } from 'react-native';
 import { TextInput } from '../components/Themed';
 import { Button } from '../components/Themed';
 import SubjectCard from '../components/SubjectCard';
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
   const tintColor = useThemeColor({}, 'tint')
   const backgroundColor = useThemeColor({}, 'background')
   const lighterColor = useThemeColor({}, 'lighterColor')
+
+  const [search, setSearch] = useState("")
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
@@ -71,6 +74,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
               textStyle={{
                 color: tintColor
               }}
+              onPress={()=>{navigation.navigate('DailyGoals')}}
             >Check tasks now!</Button>
           </View>
 

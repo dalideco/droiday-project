@@ -24,6 +24,7 @@ export type RootStackParamList = {
   SendNotif: undefined;
   Loading: undefined;
   Settings: undefined;
+  DailyGoals: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

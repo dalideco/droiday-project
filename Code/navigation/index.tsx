@@ -31,6 +31,7 @@ import { UserProvider } from '../contexts/User';
 import Loading from '../screens/Loading';
 import Settings from '../components/profile/Settings';
 import { StatusBar } from 'expo-status-bar';
+import DailyGoals from '../components/home/DailyGoals';
 
 
 export default function Navigation() {
@@ -70,6 +71,7 @@ function RootNavigator() {
           gestureEnabled: true,
         }}
       />
+
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{
         ...TransitionPresets.ModalPresentationIOS
@@ -86,6 +88,7 @@ function RootNavigator() {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="PhoneNumber" component={PhoneNumber} options={{ headerShown: false }} />
         <Stack.Screen name="SendNotif" component={SendNotif} options={{ headerShown: false }} />
+        <Stack.Screen name="DailyGoals" component={DailyGoals}/>
       </Stack.Group>
     </Stack.Navigator>
   );
