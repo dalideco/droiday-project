@@ -16,10 +16,16 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
     const tintColor = useThemeColor({}, "tint")
     const lighterColor = useThemeColor({}, "lighterColor")
     const backgroundColor = useThemeColor({}, "background")
-
+    
     const [phoneNumber, setPhoneNumber] = useState("")
+    const [error, setError] = useState(false)
 
     const next= useCallback(async()=>{
+        if(isNaN(parseInt(phoneNumber))|| !phoneNumber){
+            setError(true)
+            return ;
+        }
+        setError(false)
         updateUser("number",{
             countryCode: 216,
             number: parseInt(phoneNumber)
@@ -75,7 +81,7 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
                 <TextInputAdvanced
                     value={ phoneNumber }
                     onChangeText={(text)=>{setPhoneNumber(text)}}
-                    style={{ marginBottom: 60 }}
+                    style={{ marginBottom: 60,borderWidth: 1, borderColor: error?'red':'transparent' }}
                     placeholder="Mobile Number"
                     LeftComponent={() => (
                         <View style={{

@@ -30,7 +30,7 @@ export default function SubjectCard2({
 
     return (
         <TouchableOpacity
-            onPress= {onPress}
+            onPress={onPress}
             activeOpacity={0.6}
             style={[styles.container, {
                 backgroundColor: lighterColor,
@@ -53,9 +53,11 @@ export default function SubjectCard2({
 
                 </View>
             </View>
-            {selected && (<View style={[{
-                borderTopColor: lighterColor
-            }, styles.bottomArrow]}>
+            {selected && (<View style={[styles.bottomArrow,
+                {
+                    borderTopColor: lighterColor
+                },
+            ]}>
 
             </View>)}
         </TouchableOpacity>

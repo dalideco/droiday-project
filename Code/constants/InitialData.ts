@@ -36,9 +36,9 @@ export const COURSES: Course[] = [
         subjectName: "Alphabet and phonics",
         studying: false,
         saved: false,
-        sections : [
+        sections: [
             {
-                name:"What is the alphabet?",
+                name: "What is the alphabet?",
                 description: "What does it serve for?",
                 completed: false,
             },
@@ -48,8 +48,36 @@ export const COURSES: Course[] = [
                 completed: false,
             },
             {
-                name: "What is the alphabet?",
+                name: "History",
+                description: "How was the alphabet created?",
+                completed: false,
+            },
+            {
+                name: "Phonics",
+                description: "Understanding symbols & sounds.",
+                completed: false,
+            },
+        ]
+    },
+    {
+        name: "How to practice writing?",
+        subjectName: "Alphabet and phonics",
+        studying: true,
+        saved: false,
+        sections: [
+            {
+                name: "An Introduction",
                 description: "What does it serve for?",
+                completed: false,
+            },
+            {
+                name: "Writing the alphabet",
+                description: "English isn't the only language.",
+                completed: false,
+            },
+            {
+                name: "Invention of Writing",
+                description: "How was the alphabet created?",
                 completed: false,
             },
         ]
@@ -59,19 +87,19 @@ export const COURSES: Course[] = [
         subjectName: "Numbers",
         studying: false,
         saved: false,
-        sections : [
+        sections: [
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
@@ -82,19 +110,19 @@ export const COURSES: Course[] = [
         subjectName: "Computer Science",
         studying: true,
         saved: false,
-        sections : [
+        sections: [
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
             {
-                name:"What are alphabets?",
+                name: "What are alphabets?",
                 description: "What are the purpose?",
                 completed: false,
             },
@@ -103,7 +131,7 @@ export const COURSES: Course[] = [
 ]
 
 
-export const BADGES:Badge[] = [
+export const BADGES: Badge[] = [
     {
         name: "All-in Master",
         description: "Finish all lessons of a chapter",
@@ -116,17 +144,17 @@ export const BADGES:Badge[] = [
     }
 ]
 
-export const FRIENDS: Friend[]=[
+export const FRIENDS: Friend[] = [
     {
-        name: "Med Amine Hamdouni", 
+        name: "Med Amine Hamdouni",
         xp: 111500,
         image: require('../assets/images/img.jpeg')
     }
 ]
 
-export const SCORES: Friend[]=[
+export const SCORES: Friend[] = [
     {
-        name: "Dali Sahnoun", 
+        name: "Dali Sahnoun",
         xp: 111111500,
         image: require('../assets/images/img.jpeg')
     }

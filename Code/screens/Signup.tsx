@@ -8,19 +8,25 @@ import { Button } from '../components/Themed'
 import { FontAwesome } from '@expo/vector-icons'
 import { LeftSVG } from '../components/LeftSVG'
 import { useUser } from '../contexts/User'
+import validateEmail from '../functions/validateEmail'
 
 const { width, height } = Dimensions.get('window');
 
 export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
 
-    const {updateUser} = useUser()
+    const { updateUser } = useUser()
     const [email, setEmail] = useState("");
+    const [error, setError] = useState(false)
 
-    const next = useCallback(()=>{
-        //todo: verfiy email is a mail address
-        updateUser("email",email)
+    const next = useCallback(() => {
+        if (!validateEmail(email)) {
+            setError(true)
+            return;
+        }
+        setError(false);
+        updateUser("email", email)
         navigation.navigate('PasswordSelect')
-    },[email])
+    }, [email])
 
     return (
         <View style={styles.container}>
@@ -31,10 +37,10 @@ export default function Signup({ navigation }: RootStackScreenProps<'Signup'>) {
             </View>
             <View style={styles.contained}>
                 <TextInput
-                    style={{ marginBottom: 60 }}
+                    style={{ marginBottom: 60, borderWidth: 1, borderColor: error?'red':'transparent' }}
                     placeholder="E-mail"
                     value={email}
-                    onChangeText={text=>{setEmail(text)}}
+                    onChangeText={text => { setEmail(text) }}
                 ></TextInput>
                 <Text style={[styles.centeredText, styles.smallText]}>Already have an account?</Text>
                 <ATag

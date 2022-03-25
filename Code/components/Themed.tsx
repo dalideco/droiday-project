@@ -63,6 +63,7 @@ export function ScrollView(props: ScrollViewProps) {
 export function TextInput(props: TextInputProps) {
   const { style, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'lighterColor');
+  const textColor = useThemeColor({}, 'text')
   return <DefaultInput style={[{
     backgroundColor,
     fontSize: 20,
@@ -76,6 +77,7 @@ export function TextInput(props: TextInputProps) {
     shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
+    color:textColor
   }, style]} {...otherProps}>
   </DefaultInput>
 }
@@ -86,6 +88,7 @@ interface TextInputAdvancedProps extends TextInputProps {
 }
 export function TextInputAdvanced({ style, LeftComponent, ...otherProps }: TextInputAdvancedProps) {
   const backgroundColor = useThemeColor({}, 'lighterColor');
+  const textColor = useThemeColor({}, 'text')
   return (
     <DefaultView style={[{
       backgroundColor,
@@ -111,6 +114,7 @@ export function TextInputAdvanced({ style, LeftComponent, ...otherProps }: TextI
         style={[{
           fontSize: 20,
           flex: 1,
+          color:textColor
         }]}
         {...otherProps}
       >
@@ -204,6 +208,7 @@ export function InputWithButton(props: any) {
   const { style, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'lighterColor');
   const tintColor = useThemeColor({}, 'tint')
+  const textColor = useThemeColor({}, 'text')
 
   return <DefaultView style={[{
     backgroundColor,
@@ -224,7 +229,8 @@ export function InputWithButton(props: any) {
     <DefaultInput
       style={{
         fontSize: 20,
-        flex: 1
+        flex: 1,
+        color:textColor
       }}
     ></DefaultInput>
     <TouchableOpacity
@@ -262,6 +268,7 @@ export const MultipleInputs = ({ inputs, style, onChange, ...otherProps }: Multi
 
   const backgroundColor = useThemeColor({}, 'lighterColor')
   const background = useThemeColor({}, 'background')
+  const textColor = useThemeColor({}, 'text')
 
   return (
     <DefaultView
@@ -306,7 +313,8 @@ export const MultipleInputs = ({ inputs, style, onChange, ...otherProps }: Multi
                 onChangeText={text => { onChange({ key: key, value: text }) }}
                 style={{
                   flex: 1,
-                  fontSize: 20
+                  fontSize: 20,
+                  color:textColor
                 }}
               ></DefaultInput>
               {RightComponent && (
