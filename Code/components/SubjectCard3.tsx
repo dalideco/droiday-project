@@ -4,6 +4,8 @@ import { useThemeColor } from "./Themed"
 import { Text } from "./Themed"
 import { Section } from '../types'
 
+import Svg, { G, Circle, Path } from "react-native-svg"
+
 interface props {
     progress: number,
     subject: string,
@@ -77,6 +79,22 @@ export default function SubjectCard3({
         </View>
     )
 }
+
+function SvgComponent({progress}:{progress:number}) {
+    return (
+      <Svg
+        width={34}
+        height={34}
+        viewBox="0 0 34 34"
+      >
+        <G fill="none" stroke="#e8eef4" strokeMiterlimit={10} strokeWidth={4}>
+          <Circle cx={17} cy={17} r={17} stroke="none" />
+          <Circle cx={17} cy={17} r={15} />
+        </G>
+        <Path d="M17 0a17 17 0 010 34z" fill="#5468ff" />
+      </Svg>
+    )
+  }
 
 const styles = StyleSheet.create({
     container: {

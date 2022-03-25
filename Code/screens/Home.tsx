@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { BackHandler, StyleSheet, TouchableOpacity } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, ScrollView, InputWithButton, useThemeColor } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -6,8 +6,9 @@ import { Dimensions } from 'react-native';
 import { TextInput } from '../components/Themed';
 import { Button } from '../components/Themed';
 import SubjectCard from '../components/SubjectCard';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SubjectSelector from '../components/lectures/SubjectSelector';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
   const tintColor = useThemeColor({}, 'tint')
@@ -20,7 +21,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.smallContainer}>
-          <Text style={[styles.title,{marginBottom: 15}]}>Hi, Sirajeddine</Text>
+          <Text style={[styles.title, { marginBottom: 15 }]}>Hi, Sirajeddine</Text>
           <Text style={styles.subtitle}>
             Ready to learn something today?
           </Text>
@@ -33,10 +34,6 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
             marginTop: 20
           }}>
           </InputWithButton>
-
-          <Text style={styles.study}>
-            DAILY TASKS
-          </Text>
 
           <View
             style={{
@@ -54,12 +51,12 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
           >
             <Text style={[styles.title, {
               color: backgroundColor,
-              fontSize:20
+              fontSize: 20
             }]}>You have got 4 tasks </Text>
             <Text style={[styles.title, {
               color: backgroundColor,
-              fontSize:20,
-              marginBottom:15
+              fontSize: 20,
+              marginBottom: 15
             }]}>For today!</Text>
             <Button
               style={{
@@ -74,22 +71,18 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
               textStyle={{
                 color: tintColor
               }}
-              onPress={()=>{navigation.navigate('DailyGoals')}}
+              onPress={() => { navigation.navigate('DailyGoals') }}
             >Check tasks now!</Button>
           </View>
 
           <Text style={styles.study}>
             STUDY IN PROGRESS
           </Text>
-
         </View>
         <View>
           <ScrollView
             horizontal
-            showsHorizontalScrollIndicator={false} style={{
-              width: Dimensions.get('window').width,
-              // backgroundColor:'red'
-            }}>
+            showsHorizontalScrollIndicator={false} >
             <SubjectCard
               subject="Natural Science"
               title="Anatomy of the human body"
@@ -112,7 +105,9 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
               done={6}
             />
           </ScrollView>
+
         </View>
+
 
       </View>
     </ScrollView>
@@ -126,8 +121,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop:50,
-    marginBottom:60
+    paddingTop: 50,
+    marginBottom: 60
     // backgroundColor: 'red',
   },
   smallContainer: {

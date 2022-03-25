@@ -33,22 +33,24 @@ import Settings from '../components/profile/Settings';
 import { StatusBar } from 'expo-status-bar';
 import DailyGoals from '../components/home/DailyGoals';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import useDisableBack from '../hooks/useDisableBack';
 
 
 export default function Navigation() {
-  const {theme} = useTheme()
-  const backgroundColor = useThemeColor({},"background")
+  const { theme } = useTheme()
+  const backgroundColor = useThemeColor({}, "background")
+  useDisableBack()
   return (
     <UserProvider>
       <SafeAreaView style={{ flex: 0, backgroundColor: backgroundColor }} />
       <NavigationContainer
         linking={LinkingConfiguration}
-        theme={(theme==="dark")?DarkTheme: DefaultTheme}
+        theme={(theme === "dark") ? DarkTheme : DefaultTheme}
       >
         <RootNavigator />
       </NavigationContainer>
-      <StatusBar style={(theme==="dark")?"light":"dark"} />
-      
+      <StatusBar style={(theme === "dark") ? "light" : "dark"} />
+
     </UserProvider>
   );
 }
@@ -72,7 +74,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator}
         options={{
           headerShown: false,
-          gestureEnabled: true,
+          gestureEnabled: false,
         }}
       />
 
@@ -86,13 +88,16 @@ function RootNavigator() {
 
 
       {/* signing up */}
-      <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
+      <Stack.Screen name="Signup" component={Signup} options={{
+        headerShown: false,
+        gestureEnabled:false
+      }} />
       <Stack.Group screenOptions={{ presentation: "card" }}>
         <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="PhoneNumber" component={PhoneNumber} options={{ headerShown: false }} />
         <Stack.Screen name="SendNotif" component={SendNotif} options={{ headerShown: false }} />
-        <Stack.Screen name="DailyGoals" component={DailyGoals}/>
+        <Stack.Screen name="DailyGoals" component={DailyGoals} />
       </Stack.Group>
     </Stack.Navigator>
   );

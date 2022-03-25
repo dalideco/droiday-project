@@ -133,18 +133,18 @@ export function SvgComponent({progress}: {progress:number}) {
             transform:[{rotate:"-90deg"}]
         }}>
             <Circle
-                cx="25/2"
-                cy="25/2"
+                cx={25}
+                cy={25}
                 r={R}
                 stroke="lightgrey"
-                strokeWidth="2.5"
+                strokeWidth={2.5}
             />
             <AnimatedCircle
-                cx="25/2"
-                cy="25/2"
+                cx={25}
+                cy={25}
                 r={R}
                 stroke={tint}
-                strokeWidth="4"
+                strokeWidth={4}
                 strokeDasharray={CIRCLE_LENGTH}
                 animatedProps={animatedProp}
             />
