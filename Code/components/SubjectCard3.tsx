@@ -45,7 +45,7 @@ export default function SubjectCard3({
                             position:'relative',
                             bottom: 5
 
-                        }]}
+                        },{fontFamily:"HKGrotesk-Semibold"}]}
                     >{subject}</Text>
                 </View>
 

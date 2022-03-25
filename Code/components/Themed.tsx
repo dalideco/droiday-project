@@ -18,6 +18,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { InputCaseType } from '../types';
 import { useFonts } from 'expo-font';
+import * as Font from 'expo-font';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },

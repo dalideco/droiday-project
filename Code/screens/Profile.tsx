@@ -31,7 +31,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
         </TouchableOpacity>
         <View style={styles.container}>
           <Image source={require(`../assets/images/profile.jpg`)} style={[styles.image,{borderColor:lightColor}]} />
-          <Text style={styles.title}>Sirajeddine Aissa</Text>
+          <Text style={[styles.title,{fontFamily:"HKGrotesk-Semibold"}]}>Sirajeddine Aissa</Text>
           <Text style={styles.xp}>119,512 XP</Text>
           {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
         </View>
@@ -52,7 +52,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
                 source={image}
               ></Image>
               <DefaultView style={styles.badgeContent}>
-                <Text style={styles.badgeTitle}>{name}</Text>
+                <Text style={[styles.badgeTitle,{fontFamily:"HKGrotesk-Semibold"}]}>{name}</Text>
                 <Text style={styles.badgeDescription}>{description}</Text>
               </DefaultView>
             </DefaultView>
@@ -65,7 +65,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
                 source={image}
               ></Image>
               <DefaultView style={styles.badgeContent}>
-                <Text style={styles.badgeTitle}>{name}</Text>
+                <Text style={[styles.badgeTitle,{fontFamily:"HKGrotesk-Semibold"}]}>{name}</Text>
                 <Text style={styles.badgeDescription}> {formatNumber(xp)} XP</Text>
               </DefaultView>
             </DefaultView>
@@ -78,7 +78,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
                 source={image}
               ></Image>
               <DefaultView style={styles.badgeContent}>
-                <Text style={styles.badgeTitle}>{name}</Text>
+                <Text style={[styles.badgeTitle,{fontFamily:"HKGrotesk-Semibold"}]}>{name}</Text>
                 <Text style={styles.badgeDescription}> {formatNumber(xp)} XP</Text>
               </DefaultView>
             </DefaultView>

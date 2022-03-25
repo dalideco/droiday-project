@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     bigText: {
         fontSize: 25,
         fontWeight: '600',
+        fontFamily:"HKGrotesk-Semibold"
     },
     smallText: {
         color: 'grey'

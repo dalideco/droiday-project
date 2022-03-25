@@ -21,7 +21,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.smallContainer}>
-          <Text style={[styles.title, { marginBottom: 15 }]}>Hi, Sirajeddine</Text>
+          <Text style={[styles.title, { marginBottom: 15,fontFamily:"HKGrotesk-Semibold" }]}>Hi, Sirajeddine</Text>
           <Text style={styles.subtitle}>
             Ready to learn something today?
           </Text>
@@ -52,12 +52,12 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
             <Text style={[styles.title, {
               color: "white",
               fontSize: 20
-            }]}>You have got 4 tasks </Text>
+            },{fontFamily:"HKGrotesk-Semibold"}]}>You have got 4 tasks </Text>
             <Text style={[styles.title, {
               color: "white",
               fontSize: 20,
               marginBottom: 15
-            }]}>For today!</Text>
+            },{fontFamily:"HKGrotesk-Semibold"}]}>For today!</Text>
             <Button
               style={{
                 backgroundColor: "white",
@@ -75,7 +75,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
             >Check tasks now!</Button>
           </View>
 
-          <Text style={styles.study}>
+          <Text style={[styles.study,{fontFamily:"HKGrotesk-Semibold"}]}>
             STUDY IN PROGRESS
           </Text>
         </View>
