@@ -32,12 +32,15 @@ import Loading from '../screens/Loading';
 import Settings from '../components/profile/Settings';
 import { StatusBar } from 'expo-status-bar';
 import DailyGoals from '../components/home/DailyGoals';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function Navigation() {
   const {theme} = useTheme()
+  const backgroundColor = useThemeColor({},"background")
   return (
     <UserProvider>
+      <SafeAreaView style={{ flex: 0, backgroundColor: backgroundColor }} />
       <NavigationContainer
         linking={LinkingConfiguration}
         theme={(theme==="dark")?DarkTheme: DefaultTheme}
@@ -45,6 +48,7 @@ export default function Navigation() {
         <RootNavigator />
       </NavigationContainer>
       <StatusBar style={(theme==="dark")?"light":"dark"} />
+      
     </UserProvider>
   );
 }

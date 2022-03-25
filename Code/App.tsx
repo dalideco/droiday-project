@@ -19,10 +19,8 @@ export default function App() {
       <SafeAreaProvider>
         <ThemeProvider>
           <Navigation />
-          
         </ThemeProvider>
       </SafeAreaProvider>
-
     );
   }
 }
