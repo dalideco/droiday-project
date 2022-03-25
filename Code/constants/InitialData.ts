@@ -32,29 +32,29 @@ export const SUBJECTS: Subject[] = [
 
 export const COURSES: Course[] = [
     {
-        name: "Introduction to Alphabets",
+        name: "Alphabet and phonics",
         subjectName: "Alphabet and phonics",
         studying: false,
         saved: false,
         sections: [
             {
-                name: "What is the alphabet?",
-                description: "What does it serve for?",
+                name: "History",
+                description: "When did it all start?",
                 completed: false,
             },
             {
                 name: "Types ",
-                description: "English isn't the only language.",
+                description: "Discover its different types.",
                 completed: false,
             },
             {
-                name: "History",
-                description: "How was the alphabet created?",
+                name: "Names of letters",
+                description: "Learn about each letter",
                 completed: false,
             },
             {
                 name: "Phonics",
-                description: "Understanding symbols & sounds.",
+                description: "Understand symbols & sounds.",
                 completed: false,
             },
         ]
@@ -70,16 +70,7 @@ export const COURSES: Course[] = [
                 description: "What does it serve for?",
                 completed: false,
             },
-            {
-                name: "Writing the alphabet",
-                description: "English isn't the only language.",
-                completed: false,
-            },
-            {
-                name: "Invention of Writing",
-                description: "How was the alphabet created?",
-                completed: false,
-            },
+
         ]
     },
     {
@@ -89,45 +80,22 @@ export const COURSES: Course[] = [
         saved: false,
         sections: [
             {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
+                name: "Addition",
+                description: "Learn how to add numbers.",
                 completed: false,
             },
             {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
+                name: "Subtraction",
+                description: "Learn how to subtract numbers.",
                 completed: false,
             },
             {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
+                name: "Multiplication",
+                description: "Learn how to multiply numbers.",
                 completed: false,
             },
         ]
     },
-    {
-        name: "Algorithm",
-        subjectName: "Computer Science",
-        studying: true,
-        saved: false,
-        sections: [
-            {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
-                completed: false,
-            },
-            {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
-                completed: false,
-            },
-            {
-                name: "What are alphabets?",
-                description: "What are the purpose?",
-                completed: false,
-            },
-        ]
-    }
 ]
 
 
@@ -164,7 +132,27 @@ export const FRIENDS: Friend[] = [
         name: "Med Amine Hamdouni",
         xp: 111500,
         image: require('../assets/images/hamdouni.jpg')
-    }
+    },
+    {
+        name: "Med Ali Sahnoun",
+        xp: 111499,
+        image: require('../assets/images/dali.jpg')
+    },
+    {
+        name: "Ali Doggaz",
+        xp: 111498,
+        image: require('../assets/images/dali.jpg')
+    },
+    {
+        name: "Ala Ben Hamouda",
+        xp: 71256,
+        image: require('../assets/images/hamdouni.jpg')
+    },
+    {
+        name: "Azer Chabbar",
+        xp: 1023,
+        image: require('../assets/images/dali.jpg')
+    },
 ]
 
 export const SCORES: Friend[] = [

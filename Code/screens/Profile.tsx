@@ -1,13 +1,10 @@
 import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "../components/EditScreenInfo";
 import { ScrollView, Text, useThemeColor, View } from "../components/Themed";
 import { View as DefaultView } from "react-native";
 import { Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Selector from "../components/profile/Selector";
 import { useState } from "react";
-import { useTheme } from "@react-navigation/native";
 import { BADGES, FRIENDS, SCORES } from "../constants/InitialData";
 import { formatNumber } from "../functions/formtNumber";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -69,7 +66,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
               ></Image>
               <DefaultView style={styles.badgeContent}>
                 <Text style={styles.badgeTitle}>{name}</Text>
-                <Text style={styles.badgeDescription}> {formatNumber(xp)} xp</Text>
+                <Text style={styles.badgeDescription}> {formatNumber(xp)} XP</Text>
               </DefaultView>
             </DefaultView>
           ))}
