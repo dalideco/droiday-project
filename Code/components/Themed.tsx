@@ -17,6 +17,7 @@ import { useTheme } from '../contexts/Theme';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { InputCaseType } from '../types';
+import { useFonts } from 'expo-font';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -41,10 +42,18 @@ export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
 export function Text(props: TextProps) {
+
+  const [loaded] = useFonts({
+    HKGrotesk: require('../assets/fonts/HKGrotesk-Regular.otf'),
+    HKGroteskSemibold: require('../assets/fonts/HKGrotesk-SemiBold.otf'),
+  });
+
+  if(!loaded) return null;
+
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return <DefaultText style={[{ color,fontFamily:"HKGrotesk" }, style]} {...otherProps} />;
 }
 
 export function View(props: ViewProps) {
@@ -61,6 +70,7 @@ export function ScrollView(props: ScrollViewProps) {
 }
 
 export function TextInput(props: TextInputProps) {
+
   const { style, ...otherProps } = props;
   const backgroundColor = useThemeColor({}, 'lighterColor');
   const textColor = useThemeColor({}, 'text')

@@ -42,7 +42,7 @@ export default function Navigation() {
   useDisableBack()
   return (
     <UserProvider>
-      <SafeAreaView style={{ flex: 0, backgroundColor: backgroundColor }} />
+
       <NavigationContainer
         linking={LinkingConfiguration}
         theme={(theme === "dark") ? DarkTheme : DefaultTheme}
@@ -90,7 +90,7 @@ function RootNavigator() {
       {/* signing up */}
       <Stack.Screen name="Signup" component={Signup} options={{
         headerShown: false,
-        gestureEnabled:false
+        gestureEnabled: false
       }} />
       <Stack.Group screenOptions={{ presentation: "card" }}>
         <Stack.Screen name="PasswordSelect" component={PasswordSelect} options={{ headerShown: false }} />
@@ -113,69 +113,73 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   const { theme } = useTheme();
   const lighterColor = useThemeColor({}, "lighterColor")
+  const backgroundColor = useThemeColor({}, "background")
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: Colors[theme].tint,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          shadowColor: 'black',
-          shadowOpacity: 0.15,
-          shadowOffset: { width: 0, height: 3 },
-          shadowRadius: 10,
-          backgroundColor: lighterColor,
-          borderTopWidth: 0,
-          position: 'absolute',
-          elevation: 3,
-          height: 60,
-          borderTopRightRadius: 30,
-          borderTopLeftRadius: 30,
-        },
-      }}
-
-    >
-      <BottomTab.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
-          title: 'Tab One',
-          tabBarIcon: (props) => <TabBarIcon name="home" {...props} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[theme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-
-        })}
-      />
-      <BottomTab.Screen
-        name="Lectures"
-        component={Lectures}
-        options={{
-          tabBarIcon: (props) => <TabBarIcon name="book" {...props} />,
+    <>
+      <SafeAreaView style={{ flex: 0, backgroundColor: backgroundColor }} />
+      <BottomTab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: Colors[theme].tint,
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            shadowColor: 'black',
+            shadowOpacity: 0.15,
+            shadowOffset: { width: 0, height: 3 },
+            shadowRadius: 10,
+            backgroundColor: lighterColor,
+            borderTopWidth: 0,
+            position: 'absolute',
+            elevation: 3,
+            height: 60,
+            borderTopRightRadius: 30,
+            borderTopLeftRadius: 30,
+          },
         }}
-      />
-      <BottomTab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: (props) => <TabBarIcon name="user" {...props} />,
-        }}
-      />
 
-    </BottomTab.Navigator>
+      >
+        <BottomTab.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+            title: 'Tab One',
+            tabBarIcon: (props) => <TabBarIcon name="home" {...props} />,
+            headerRight: () => (
+              <Pressable
+                onPress={() => navigation.navigate('Modal')}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}>
+                <FontAwesome
+                  name="info-circle"
+                  size={25}
+                  color={Colors[theme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            ),
+
+          })}
+        />
+        <BottomTab.Screen
+          name="Lectures"
+          component={Lectures}
+          options={{
+            tabBarIcon: (props) => <TabBarIcon name="book" {...props} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: (props) => <TabBarIcon name="user" {...props} />,
+          }}
+        />
+
+      </BottomTab.Navigator>
+    </>
   );
 }
 
