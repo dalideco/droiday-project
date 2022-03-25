@@ -135,27 +135,42 @@ export const BADGES: Badge[] = [
     {
         name: "All-in Master",
         description: "Finish all lessons of a chapter",
-        image: require('../assets/images/adaptive-icon.png')
+        image: require('../assets/images/all-in.png')
     },
     {
-        name: "All-in Master",
-        description: "Finish all lessons of a chapter",
-        image: require('../assets/images/adaptive-icon.png')
-    }
+        name: "Performer",
+        description: "Complete a quiz",
+        image: require('../assets/images/performer.png')
+    },
+    {
+        name: "Intellectual",
+        description: "Study two lectures",
+        image: require('../assets/images/intellectual.png')
+    },
+    {
+        name: "Conqueror",
+        description: "Finish #1 in the scoreboard",
+        image: require('../assets/images/conqueror.png')
+    },
+    {
+        name: "Steady",
+        description: "Study every day for 30 days",
+        image: require('../assets/images/steady.png')
+    },
 ]
 
 export const FRIENDS: Friend[] = [
     {
         name: "Med Amine Hamdouni",
         xp: 111500,
-        image: require('../assets/images/img.jpeg')
+        image: require('../assets/images/hamdouni.jpg')
     }
 ]
 
 export const SCORES: Friend[] = [
     {
-        name: "Dali Sahnoun",
-        xp: 111111500,
-        image: require('../assets/images/img.jpeg')
+        name: "Med Ali Sahnoun",
+        xp: 111499,
+        image: require('../assets/images/dali.jpg')
     }
 ]

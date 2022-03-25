@@ -59,7 +59,7 @@ export default function SendNotif({ navigation }: RootStackScreenProps<'Password
 
             {/* page layout */}
             <View style={styles.first}>
-                <Image source={require(`../../assets/images/img.jpeg`)} style={styles.image} />
+                <Image source={require(`../../assets/images/notifications.png`)} style={styles.image} />
             </View>
             <View style={styles.contained}>
                 <Text style={[styles.centeredText, styles.bigText]}>Notifications</Text>

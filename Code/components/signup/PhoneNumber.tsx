@@ -95,7 +95,7 @@ export default function PhoneNumber({ navigation }: RootStackScreenProps<'Passwo
                             marginRight: 5
                         }}>
                             <Image
-                                source={require(`../../assets/images/img.jpeg`)}
+                                source={require(`../../assets/images/flag.png`)}
                                 style={{
                                     width: 30,
                                     height: 30,
