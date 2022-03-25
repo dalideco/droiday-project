@@ -1,4 +1,4 @@
-import { View, Image } from "react-native"
+import { View, Image, Dimensions } from "react-native"
 import { StyleSheet } from "react-native"
 import { useThemeColor } from "./Themed"
 import { Text } from "./Themed"
@@ -108,7 +108,7 @@ function SvgComponent({ progress }: { progress: number }) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 315,
+        width: Dimensions.get('window').width*0.9,
         margin: 20,
         borderRadius: 15,
         display: "flex",

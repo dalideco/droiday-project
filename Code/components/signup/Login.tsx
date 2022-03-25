@@ -1,6 +1,7 @@
 import { FontAwesome } from '@expo/vector-icons'
 import React, { useCallback, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
+import { useUser } from '../../contexts/User'
 import { InputCaseType, RootStackScreenProps } from '../../types'
 import { LeftSVG } from '../LeftSVG'
 import { ATag, Button, MultipleInputs, Text, TextInput, useThemeColor, View } from '../Themed'
@@ -11,6 +12,7 @@ export default function Login({ navigation }: RootStackScreenProps<'PasswordSele
 
   const tintColor = useThemeColor({}, "tint")
   const lighterColor = useThemeColor({}, "lighterColor")
+  const {updateUser, saveUser} = useUser()
 
   const [inputs, setInputs] = useState<InputCaseType[]>([
     {
@@ -34,6 +36,13 @@ export default function Login({ navigation }: RootStackScreenProps<'PasswordSele
       return input; 
     }))
   }
+
+  const next = useCallback(()=>{
+    updateUser('email','dali@dali.dali');
+    saveUser().then(()=>{
+      navigation.navigate('Root')
+    })
+  },[])
 
   return (
     <View
@@ -76,7 +85,7 @@ export default function Login({ navigation }: RootStackScreenProps<'PasswordSele
           style={{
             marginBottom: 20
           }}
-          onPress={() => { navigation.navigate('Root') }}
+          onPress={next}
           LeftSVG={LeftSVG}
         >
           Continue

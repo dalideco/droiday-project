@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "reactnative-first",
-    "slug": "reactnative-first",
+    "name": "kipy",
+    "slug": "kipy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,6 +22,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package":"thekipy.studyapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

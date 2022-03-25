@@ -50,17 +50,17 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
             }}
           >
             <Text style={[styles.title, {
-              color: backgroundColor,
+              color: "white",
               fontSize: 20
             }]}>You have got 4 tasks </Text>
             <Text style={[styles.title, {
-              color: backgroundColor,
+              color: "white",
               fontSize: 20,
               marginBottom: 15
             }]}>For today!</Text>
             <Button
               style={{
-                backgroundColor: lighterColor,
+                backgroundColor: "white",
                 alignSelf: 'center',
                 borderRadius: 100,
                 paddingTop: 8,

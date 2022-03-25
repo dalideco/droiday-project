@@ -40,7 +40,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
           options={OPTIONS}
           selected={selected}
           onSelect={(selected) => { setSelected(selected as Selected) }}
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 20,marginBottom:20 }}
         />
 
         <View style={[{ backgroundColor: lightColor }, styles.badgesContainer]}>
