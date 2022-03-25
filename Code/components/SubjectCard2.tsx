@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     courseName: {
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: '600',
         textAlign: "center"
     },

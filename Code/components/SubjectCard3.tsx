@@ -30,15 +30,25 @@ export default function SubjectCard3({
 
             <View style={styles.content}>
 
-                <Text
-                    style={[{
-                        color: tintColor,
-                        fontWeight: '600',
-                        paddingTop: 10,
-                        paddingLeft: 10
+                <View style ={{
+                    display:'flex' ,
+                    flexDirection:'row',
+                    alignItems:'center'
+                }}>
+                    <SvgComponent progress={0.2}/>
+                    <Text
+                        style={[{
+                            color: tintColor,
+                            fontWeight: '600',
+                            paddingTop: 10,
+                            paddingLeft: 10,
+                            position:'relative',
+                            bottom: 5
 
-                    }]}
-                >{subject}</Text>
+                        }]}
+                    >{subject}</Text>
+                </View>
+
                 <View style={{ height: 20 }}></View>
                 <View
                     style={{
@@ -80,21 +90,21 @@ export default function SubjectCard3({
     )
 }
 
-function SvgComponent({progress}:{progress:number}) {
+function SvgComponent({ progress }: { progress: number }) {
     return (
-      <Svg
-        width={34}
-        height={34}
-        viewBox="0 0 34 34"
-      >
-        <G fill="none" stroke="#e8eef4" strokeMiterlimit={10} strokeWidth={4}>
-          <Circle cx={17} cy={17} r={17} stroke="none" />
-          <Circle cx={17} cy={17} r={15} />
-        </G>
-        <Path d="M17 0a17 17 0 010 34z" fill="#5468ff" />
-      </Svg>
+        <Svg
+            width={34}
+            height={34}
+            viewBox="0 0 34 34"
+        >
+            <G fill="none" stroke="#e8eef4" strokeMiterlimit={10} strokeWidth={4}>
+                <Circle cx={17} cy={17} r={17} stroke="none" />
+                <Circle cx={17} cy={17} r={15} />
+            </G>
+            <Path d="M17 0a17 17 0 010 34z" fill="#5468ff" />
+        </Svg>
     )
-  }
+}
 
 const styles = StyleSheet.create({
     container: {

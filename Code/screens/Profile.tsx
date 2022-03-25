@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     // backgroundColor: 'green',
-    marginBottom:60
+    marginBottom:80
   },
   container: {
     flex: 4,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     height: 50
   },
   badgeTitle: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '600'
   },
   badgeDescription: {

@@ -76,6 +76,29 @@ export const COURSES: Course[] = [
     {
         name: "Calculus",
         subjectName: "Numbers",
+        studying: true,
+        saved: false,
+        sections: [
+            {
+                name: "Addition",
+                description: "Learn how to add numbers.",
+                completed: false,
+            },
+            {
+                name: "Subtraction",
+                description: "Learn how to subtract numbers.",
+                completed: false,
+            },
+            {
+                name: "Multiplication",
+                description: "Learn how to multiply numbers.",
+                completed: false,
+            },
+        ]
+    },
+    {
+        name: "Algebra",
+        subjectName: "Numbers",
         studying: false,
         saved: false,
         sections: [
@@ -96,6 +119,30 @@ export const COURSES: Course[] = [
             },
         ]
     },
+    {
+        name: "Algorithms and Data structures",
+        subjectName: "Computer Science",
+        studying: false,
+        saved: false,
+        sections: [
+            {
+                name: "Addition",
+                description: "Learn how to add numbers.",
+                completed: false,
+            },
+            {
+                name: "Subtraction",
+                description: "Learn how to subtract numbers.",
+                completed: false,
+            },
+            {
+                name: "Multiplication",
+                description: "Learn how to multiply numbers.",
+                completed: false,
+            },
+        ]
+    },
+    
 ]
 
 

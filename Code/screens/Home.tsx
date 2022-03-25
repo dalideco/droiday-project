@@ -98,9 +98,9 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
               done={6}
             />
             <SubjectCard
-              subject="Maths"
-              title="Numbers"
-              thumbnail={require(`../assets/images/Numbers.jpg`)}
+              subject="Alphabets and phonics"
+              title="Introduction to Alphabet"
+              thumbnail={require(`../assets/images/alphabet.jpg`)}
               total={8}
               done={6}
             />
