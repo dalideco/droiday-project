@@ -25,6 +25,8 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
     }
   ])
 
+  const [error, setError] = useState(false)
+
   const onInputsChange =({key,value }:{key:string, value:string})=>{
     setInputs(inputs.map(input=>{
       if(input.key === key){
@@ -35,7 +37,12 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
   }
 
   const next = useCallback(()=>{
+    if((inputs[0].value !== inputs[1].value) || !inputs[0].value){
+      setError(true)
+      return ;
+    }
     saveUser().then(()=>{
+      setError(false)
       navigation.navigate('PhoneNumber')
     });
   },[])
@@ -70,7 +77,7 @@ export default function PasswordSelect({ navigation }: RootStackScreenProps<'Pas
       </View>
       <View style={styles.contained}>
         <MultipleInputs
-          style={{ marginBottom: 100 }}
+          style={{ marginBottom: 100,borderWidth: 1, borderColor: error?'red':'transparent' }}
           inputs={inputs}
           onChange={onInputsChange}
         ></MultipleInputs>

@@ -6,6 +6,8 @@ import { Dimensions } from 'react-native';
 import { TextInput } from '../components/Themed';
 import { Button } from '../components/Themed';
 import SubjectCard from '../components/SubjectCard';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
   const tintColor = useThemeColor({}, 'tint')
@@ -120,7 +122,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 50
+    paddingTop:50,
+    marginBottom:60
     // backgroundColor: 'red',
   },
   smallContainer: {

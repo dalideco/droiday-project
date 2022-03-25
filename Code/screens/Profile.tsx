@@ -33,7 +33,7 @@ export default function Profile({navigation} : RootStackScreenProps<'Root'>) {
           <FontAwesome size={30} name="gear" color="#344356" />
         </TouchableOpacity>
         <View style={styles.container}>
-          <Image source={require(`../assets/images/img.jpeg`)} style={styles.image} />
+          <Image source={require(`../assets/images/img.jpeg`)} style={[styles.image,{borderColor:lightColor}]} />
           <Text style={styles.title}>Sirajeddine Aissa</Text>
           <Text style={styles.xp}>114,132 XP</Text>
           {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    // backgroundColor: 'green'
+    // backgroundColor: 'green',
+    marginBottom:60
   },
   container: {
     flex: 4,

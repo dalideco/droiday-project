@@ -9,7 +9,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable, View } from 'react-native';
-import { ThemeProvider } from '../contexts/Theme';
+import { ThemeProvider, useTheme } from '../contexts/Theme';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
@@ -19,7 +19,7 @@ import Lectures from '../screens/Lectures';
 import Profile from '../screens/Profile'
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import { Text } from '../components/Themed';
+import { Text, useThemeColor } from '../components/Themed';
 import { StyleSheet } from 'react-native';
 import Signup from '../screens/Signup';
 import PasswordSelect from '../components/signup/PasswordSelect';
@@ -30,19 +30,21 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import { UserProvider } from '../contexts/User';
 import Loading from '../screens/Loading';
 import Settings from '../components/profile/Settings';
+import { StatusBar } from 'expo-status-bar';
 
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation() {
+  const {theme} = useTheme()
   return (
-    <ThemeProvider>
-      <UserProvider>
-        <NavigationContainer
-          linking={LinkingConfiguration}
-          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <RootNavigator />
-        </NavigationContainer>
-      </UserProvider>
-    </ThemeProvider>
+    <UserProvider>
+      <NavigationContainer
+        linking={LinkingConfiguration}
+        theme={(theme==="dark")?DarkTheme: DefaultTheme}
+      >
+        <RootNavigator />
+      </NavigationContainer>
+      <StatusBar style={(theme==="dark")?"light":"dark"} />
+    </UserProvider>
   );
 }
 
@@ -97,21 +99,24 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme();
+  const lighterColor = useThemeColor({}, "lighterColor")
 
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: Colors[theme].tint,
         tabBarShowLabel: false,
         tabBarStyle: {
           shadowColor: 'black',
           shadowOpacity: 0.15,
           shadowOffset: { width: 0, height: 3 },
           shadowRadius: 10,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: lighterColor,
+          borderTopWidth: 0,
+          position: 'absolute',
           elevation: 3,
           height: 60,
           borderTopRightRadius: 30,
@@ -135,7 +140,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name="info-circle"
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colors[theme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
